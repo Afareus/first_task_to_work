@@ -1,0 +1,67 @@
+﻿@model AppCarsUsers.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Users/Index.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SPZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SPZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year_of_built)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year_of_built)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarBrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarBrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarBrandAlternate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarBrandAlternate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountOfPlaces)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountOfPlaces)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -77,3 +77,7 @@ F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\obj\Debug\AppCarsUsers.cs
 F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\obj\Debug\AppCarsUsers.csproj.CopyComplete
 F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\obj\Debug\AppCarsUsers.dll
 F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\obj\Debug\AppCarsUsers.pdb
+F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\bin\EntityFramework.dll
+F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\bin\EntityFramework.SqlServer.dll
+F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\bin\EntityFramework.xml
+F:\Projekty\Prvni_ukol_prace\AppCarsUsers\AppCarsUsers\bin\EntityFramework.SqlServer.xml
