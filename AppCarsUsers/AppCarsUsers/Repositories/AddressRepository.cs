@@ -10,7 +10,9 @@ namespace AppCarsUsers.Repositories {
     public class AddressRepository : IRepository<Address> {
 
         private CarsUsersContext _db;
-        public CarsUsersContext Context { set => _db = value; }
+        public AddressRepository(CarsUsersContext db) {
+            _db = db;
+        }
 
         public List<Address> List() {
             return _db.Adresses.ToList();

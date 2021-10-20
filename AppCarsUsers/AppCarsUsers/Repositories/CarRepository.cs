@@ -12,7 +12,9 @@ namespace AppCarsUsers.Repositories {
     public class CarRepository : IRepository<Car> {
 
         private CarsUsersContext _db;
-        public CarsUsersContext Context { set => _db = value; }
+        public CarRepository(CarsUsersContext db) {
+            _db = db;
+        }
 
         public List<Car> List() {
             return _db.Cars.ToList();

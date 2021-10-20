@@ -8,27 +8,31 @@ using System.Web;
 using System.Web.Mvc;
 using AppCarsUsers.Context;
 using AppCarsUsers.Models;
+using AppCarsUsers.Repositories;
 
 namespace AppCarsUsers.Controllers
 {
     public class UsersController : Controller
     {
-        private CarsUsersContext db = new CarsUsersContext();
+        private UserRepository _ur = new UserRepository(new CarsUsersContext());
+        private AddressRepository _ar = new AddressRepository(new CarsUsersContext());
+        private CarRepository _cr = new CarRepository(new CarsUsersContext());
+
+        //public UsersController(UserRepository ur) {             // constructor - Dependecy injection
+        //    _ur = ur;
+        //}
 
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index() 
         {
-            return View(db.Users.ToList());
+            var users = _ur.List();
+            return View(users);
         }
 
         // GET: Users/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+            User user = _ur.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -51,8 +55,7 @@ namespace AppCarsUsers.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                _ur.Create(user);
                 return RedirectToAction("Index");
             }
 
@@ -60,13 +63,9 @@ namespace AppCarsUsers.Controllers
         }
 
         // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+            User user = _ur.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -83,21 +82,16 @@ namespace AppCarsUsers.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                _ur.Edit(user);
                 return RedirectToAction("Index");
             }
             return View(user);
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+            User user = _ur.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -110,19 +104,10 @@ namespace AppCarsUsers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            _ur.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

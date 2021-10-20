@@ -9,11 +9,14 @@ using System.Net;
 using System.Web.Mvc;
 
 
+
 namespace AppCarsUsers.Repositories {
     public class UserRepository : IRepository<User> {
 
         private CarsUsersContext _db;
-        public CarsUsersContext Context { set => _db = value; }
+        public UserRepository(CarsUsersContext db) {        // constructor - Dependecy injection
+            _db = db;
+        }
 
 
         public List<User> List() {
