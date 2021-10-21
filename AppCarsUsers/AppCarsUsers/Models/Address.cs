@@ -7,7 +7,9 @@ using System.Web;
 
 namespace AppCarsUsers.Models {
     public class Address {
+
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]        // autoinkrementace při přidání řádku do databáze
         public int Id { get; set; }
 
         public int UserId { get; set; }

@@ -21,6 +21,10 @@ namespace AppCarsUsers.Repositories {
 
         public List<User> List() {
 
+            // ___________________________ list uživatelů i s adresami pomocí LAZYLOADINGU _______________________________________
+
+            //return _db.Users.ToList();
+
             // __________________________________ list uživatelů i s adresami pomocí JOIN ________________________________________
 
             //var usersData = from u in _db.Users
@@ -33,18 +37,6 @@ namespace AppCarsUsers.Repositories {
             // __________________________ list uživatelů i s adresami pomocí metody INCLUDE ______________________________________
 
             return _db.Users.Include(x => x.address).ToList();
-
-            // ___________________________ list uživatelů i s adresami pomocí LAZYLOADINGU _______________________________________
-
-            //List<User> users = _db.Users.ToList();
-            //List<Address> addresses = _db.Adresses.ToList();
-
-            //foreach (User u in users) {
-            //    foreach (Address a in addresses) {
-            //    }
-            //}
-
-            //return users;
 
         }
 

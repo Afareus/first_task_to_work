@@ -8,6 +8,7 @@ using System.Web;
 namespace AppCarsUsers.Models {
     public class User {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]        // autoinkrementace při přidání řádku do databáze
         public int Id { get; set; }
 
         [Required]
@@ -18,18 +19,22 @@ namespace AppCarsUsers.Models {
         [StringLength(50)]
         public string LastName { get; set; }
 
-        public int? AddressId { get; set; }
+        //public int? AddressId { get; set; }
 
         [StringLength(16)]
         public string PersonIdNumber { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }       // tady si nejsem jistý jestli nechat DateTime když čas nebudu potřebovat
-    
+        public DateTime? DateOfBirth { get; set; }      
+
         public virtual ICollection<Car> UserCars { get; set; }
 
-        public virtual Address address { get; set; }
+        //[ForeignKey("Id")]
+        public Address address { get; set; }
+
+        [NotMapped]
+        public int CountCars { get { return UserCars?.Count() ?? 0; } }        // pokud je UserCars.Count() null, tak vrátí 0
+
 
         //public DateTime DeleteTime  { get; set; }       // nějaké datum bude jako defaultní a když bude jiné, tak záznam bude označený jako smazaný (bude se nastavovat při deleteUser)
-
     }
 }
