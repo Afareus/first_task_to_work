@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 
 namespace AppCarsUsers.Repositories {
-    public class UserRepository : IRepository<User> {
+    public class UserRepository /*: IRepository<User>*/ {
 
         private CarsUsersContext _db;
         public UserRepository(CarsUsersContext db) {        // constructor - Dependecy injection
@@ -20,7 +20,32 @@ namespace AppCarsUsers.Repositories {
 
 
         public List<User> List() {
-            return _db.Users.ToList();       
+
+            // __________________________________ list uživatelů i s adresami pomocí JOIN ________________________________________
+
+            //var usersData = from u in _db.Users
+            //                join a in _db.Adresses on u.Id equals a.UserId into u2
+            //                from a in u2.DefaultIfEmpty()
+            //                select new { user = u, address = a };
+
+            //return usersData.Select(data => data.user).ToList();
+
+            // __________________________ list uživatelů i s adresami pomocí metody INCLUDE ______________________________________
+
+            return _db.Users.Include(x => x.address).ToList();
+
+            // ___________________________ list uživatelů i s adresami pomocí LAZYLOADINGU _______________________________________
+
+            //List<User> users = _db.Users.ToList();
+            //List<Address> addresses = _db.Adresses.ToList();
+
+            //foreach (User u in users) {
+            //    foreach (Address a in addresses) {
+            //    }
+            //}
+
+            //return users;
+
         }
 
         public User Get(int id) {

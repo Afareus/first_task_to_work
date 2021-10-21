@@ -10,22 +10,19 @@ using AppCarsUsers.Context;
 using AppCarsUsers.Models;
 using AppCarsUsers.Repositories;
 
+
 namespace AppCarsUsers.Controllers
 {
     public class UsersController : Controller
     {
         private UserRepository _ur = new UserRepository(new CarsUsersContext());
-        private AddressRepository _ar = new AddressRepository(new CarsUsersContext());
-        private CarRepository _cr = new CarRepository(new CarsUsersContext());
 
-        //public UsersController(UserRepository ur) {             // constructor - Dependecy injection
-        //    _ur = ur;
-        //}
 
         // GET: Users
         public ActionResult Index() 
         {
             var users = _ur.List();
+
             return View(users);
         }
 

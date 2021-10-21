@@ -9,7 +9,9 @@ namespace AppCarsUsers.Models {
     public class Address {
         [Key]
         public int Id { get; set; }
-        
+
+        public int UserId { get; set; }
+
         [StringLength(50)]
         public string City { get; set; }
         

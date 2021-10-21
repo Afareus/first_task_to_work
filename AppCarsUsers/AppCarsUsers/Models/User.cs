@@ -27,6 +27,8 @@ namespace AppCarsUsers.Models {
     
         public virtual ICollection<Car> UserCars { get; set; }
 
+        public virtual Address address { get; set; }
+
         //public DateTime DeleteTime  { get; set; }       // nějaké datum bude jako defaultní a když bude jiné, tak záznam bude označený jako smazaný (bude se nastavovat při deleteUser)
 
     }
