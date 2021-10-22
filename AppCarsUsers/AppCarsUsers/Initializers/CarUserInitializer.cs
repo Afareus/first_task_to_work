@@ -11,7 +11,6 @@ namespace AppCarsUsers.Context {
 
             var defaultUsers = new List<User>();
 
-            defaultUsers.Add(new User() { FirstName = "Pepa", LastName = "Novák", DateOfBirth = new DateTime(1988, 11, 22) });
             defaultUsers.Add(new User() { FirstName = "Gabriel", LastName = "Kovács", DateOfBirth = new DateTime(1989, 4, 9), PersonIdNumber = "123456/5555", address = new Address { Street = "Závodní 2431", City = "Karviná", ZIP = "73504" } });
             defaultUsers.Add(new User() { FirstName = "Tom", LastName = "Hofer", DateOfBirth = new DateTime(1987, 12, 19), PersonIdNumber = "444456/5445", address = new Address { Street = "Haškova 158", City = "Karviná", ZIP = "73501" } });
             defaultUsers.Add(new User() { FirstName = "Markéta", LastName = "Kovácsová", DateOfBirth = new DateTime(1990,1, 11), PersonIdNumber = "121116/1115", address = new Address { Street = "Závodní 2431", City = "Karviná", ZIP = "11111" } });

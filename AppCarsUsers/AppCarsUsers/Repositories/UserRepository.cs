@@ -42,7 +42,8 @@ namespace AppCarsUsers.Repositories {
         }
 
         public User Get(int id) {
-            return _db.Users.Find(id);
+
+            return _db.Users.Include(user => user.address).FirstOrDefault(user => user.Id == id);
         }
 
         public void Create(User user) {
