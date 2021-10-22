@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace AppCarsUsers.Context {
-    internal class CarUserInitializer : DropCreateDatabaseAlways<CarsUsersContext> {
+    internal class CarUserInitializer : DropCreateDatabaseIfModelChanges<CarsUsersContext> {
 
         protected override void Seed(CarsUsersContext context) {
             base.Seed(context);

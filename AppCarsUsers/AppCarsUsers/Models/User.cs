@@ -24,12 +24,13 @@ namespace AppCarsUsers.Models {
         [StringLength(16)]
         public string PersonIdNumber { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime? DateOfBirth { get; set; }      
 
         public virtual ICollection<Car> UserCars { get; set; }
 
         //[ForeignKey("Id")]
-        public Address address { get; set; }
+        public virtual Address address { get; set; }
 
         [NotMapped]
         public int CountCars { get { return UserCars?.Count() ?? 0; } }        // pokud je UserCars.Count() null, tak vrátí 0

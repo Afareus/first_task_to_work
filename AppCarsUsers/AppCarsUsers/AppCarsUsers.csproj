@@ -126,7 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Context\CarUserInitializer.cs" />
+    <Compile Include="Initializers\CarUserInitializer.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Context\CarsUsersContext.cs" />
     <Compile Include="Controllers\UsersController.cs" />

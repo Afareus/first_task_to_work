@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 
 namespace AppCarsUsers.Repositories {
-    public class UserRepository /*: IRepository<User>*/ {
+    public class UserRepository : IRepository<User> {
 
         private CarsUsersContext _db;
         public UserRepository(CarsUsersContext db) {        // constructor - Dependecy injection
@@ -23,7 +23,7 @@ namespace AppCarsUsers.Repositories {
 
             // ___________________________ list uživatelů i s adresami pomocí LAZYLOADINGU _______________________________________
 
-            //return _db.Users.ToList();
+            //return _db.Users.ToList();             // pužívat jenom na zkoušku !
 
             // __________________________________ list uživatelů i s adresami pomocí JOIN ________________________________________
 
@@ -34,9 +34,10 @@ namespace AppCarsUsers.Repositories {
 
             //return usersData.Select(data => data.user).ToList();
 
-            // __________________________ list uživatelů i s adresami pomocí metody INCLUDE ______________________________________
+            // ______________________ list uživatelů s adresami i počtem aut pomocí metody INCLUDE _______________________________
 
-            return _db.Users.Include(x => x.address).ToList();
+            List<User> users = _db.Users.Include(user => user.UserCars).Include(user => user.address).ToList();
+            return users;
 
         }
 
@@ -48,6 +49,7 @@ namespace AppCarsUsers.Repositories {
             _db.Users.Add(user);
             _db.SaveChanges();
         }
+
 
         public void Edit(User user) {
             _db.Entry(user).State = EntityState.Modified;

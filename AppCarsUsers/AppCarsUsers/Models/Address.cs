@@ -12,7 +12,7 @@ namespace AppCarsUsers.Models {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]        // autoinkrementace při přidání řádku do databáze
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
 
         [StringLength(50)]
         public string City { get; set; }
