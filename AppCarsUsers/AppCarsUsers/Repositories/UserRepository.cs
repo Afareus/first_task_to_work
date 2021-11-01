@@ -13,9 +13,9 @@ using System.Web.Mvc;
 namespace AppCarsUsers.Repositories {
     public class UserRepository : IRepository<User> {
 
-        private CarsUsersContext _db;
+        private CarsUsersContext _dbContext;
         public UserRepository(CarsUsersContext db) {        // constructor - Dependecy injection
-            _db = db;
+            _dbContext = db;
         }
 
 
@@ -36,31 +36,38 @@ namespace AppCarsUsers.Repositories {
 
             // ______________________ list uživatelů s adresami i počtem aut pomocí metody INCLUDE _______________________________
 
-            List<User> users = _db.Users.Include(user => user.UserCars).Include(user => user.address).ToList();
+            List<User> users = _dbContext.Users.Include(user => user.UserCars).Include(user => user.address).ToList();
             return users;
 
         }
 
         public User Get(int id) {
 
-            return _db.Users.Include(user => user.address).FirstOrDefault(user => user.Id == id);
+            return _dbContext.Users.Include(user => user.address).FirstOrDefault(user => user.Id == id);
         }
 
         public void Create(User user) {
-            _db.Users.Add(user);
-            _db.SaveChanges();
+            _dbContext.Users.Add(user);
+            _dbContext.SaveChanges();
         }
 
 
         public void Edit(User user) {
-            _db.Entry(user).State = EntityState.Modified;
-            _db.SaveChanges();
+
+            User us = _dbContext.Users.Include(u => u.address).FirstOrDefault(u => u.Id == user.Id);
+            us.address = user.address;
+
+            _dbContext.Entry(us).State = EntityState.Modified;
+            
+
+            _dbContext.SaveChanges();
         }
 
         public void Delete(int id) {
-            User user = _db.Users.Find(id);
-            _db.Users.Remove(user);
-            _db.SaveChanges();
+            User user = _dbContext.Users.Find(id);
+
+            _dbContext.Users.Remove(user);
+            _dbContext.SaveChanges();
         }
     }
 }

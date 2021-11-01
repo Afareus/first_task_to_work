@@ -9,33 +9,34 @@ using System.Web.Mvc;
 using AppCarsUsers.Context;
 using AppCarsUsers.Models;
 using AppCarsUsers.Repositories;
+using AppCarsUsers.Controllers;
 
 
 namespace AppCarsUsers.Controllers
 {
     public class UsersController : Controller
     {
-        private UserRepository _ur = new UserRepository(new CarsUsersContext());
+        private UserRepository _userRepository = new UserRepository(new CarsUsersContext());
 
 
         // GET: Users
         public ActionResult Index() 
         {
-            var users = _ur.List();
+            var users = _userRepository.List();
 
             return View(users);
         }
 
-        // GET: Users/Details/5
-        public ActionResult Details(int id)
-        {
-            User user = _ur.Get(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
+        //// GET: Users/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    User user = _userRepository.Get(id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(user);
+        //}
 
         // GET: Users/Create
         public ActionResult Create()
@@ -52,7 +53,7 @@ namespace AppCarsUsers.Controllers
         {
             if (ModelState.IsValid)
             {
-                _ur.Create(user);
+                _userRepository.Create(user);
                 return RedirectToAction("Index");
             }
 
@@ -62,7 +63,7 @@ namespace AppCarsUsers.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(int id)
         {
-            User user = _ur.Get(id);
+            User user = _userRepository.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -79,7 +80,7 @@ namespace AppCarsUsers.Controllers
         {
             if (ModelState.IsValid)
             {
-                _ur.Edit(user);
+                _userRepository.Edit(user);
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -88,7 +89,7 @@ namespace AppCarsUsers.Controllers
         // GET: Users/Delete/5
         public ActionResult Delete(int id)
         {
-            User user = _ur.Get(id);
+            User user = _userRepository.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -101,10 +102,11 @@ namespace AppCarsUsers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _ur.Delete(id);
+            _userRepository.Delete(id);
             return RedirectToAction("Index");
         }
 
-        
+
+
     }
 }

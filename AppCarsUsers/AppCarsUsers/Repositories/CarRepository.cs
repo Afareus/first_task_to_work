@@ -11,33 +11,33 @@ using System.Web.Mvc;
 namespace AppCarsUsers.Repositories {
     public class CarRepository : IRepository<Car> {
 
-        private CarsUsersContext _db;
+        private CarsUsersContext _dbContext;
         public CarRepository(CarsUsersContext db) {
-            _db = db;
+            _dbContext = db;
         }
 
         public List<Car> List() {
-            return _db.Cars.ToList();
+            return _dbContext.Cars.ToList();
         }
 
         public Car Get(int id) {
-            return _db.Cars.Find(id);
+            return _dbContext.Cars.Find(id);
         }
 
         public void Create(Car car) {
-            _db.Cars.Add(car);
-            _db.SaveChanges();
+            _dbContext.Cars.Add(car);
+            _dbContext.SaveChanges();
         }
 
         public void Edit(Car car) {
-            _db.Entry(car).State = EntityState.Modified;
-            _db.SaveChanges();
+            _dbContext.Entry(car).State = EntityState.Modified;
+            _dbContext.SaveChanges();
         }
 
         public void Delete(int id) {
-            Car car = _db.Cars.Find(id);
-            _db.Cars.Remove(car);
-            _db.SaveChanges();
+            Car car = _dbContext.Cars.Find(id);
+            _dbContext.Cars.Remove(car);
+            _dbContext.SaveChanges();
         }
 
     }
